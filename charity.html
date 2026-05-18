@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>筋動人生・愛心匯流 ｜ 惠明盲校公益平台</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #1A1612;
+  --warm:    #FAF6F0;
+  --paper:   #F2EBE0;
+  --red:     #C0392B;
+  --red-soft:#E8C4BF;
+  --gold:    #B8914A;
+  --gold-lt: #ECD9B0;
+  --stone:   #7A6E63;
+  --muted:   #A89B8E;
+  --white:   #FFFFFF;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--warm);
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+h1,h2,h3,h4 { font-family: 'Noto Serif TC', serif; }
+
+/* ── 導覽 ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,246,240,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--gold-lt);
+  padding: 0 2rem;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; }
+.nav-brand-text { font-family: 'Noto Serif TC', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); }
+.nav-brand-sub { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; display: block; margin-top: 1px; }
+.nav-heart { font-size: 1.4rem; }
+.nav-back {
+  font-size: 0.8rem; color: var(--stone); text-decoration: none;
+  border: 1px solid var(--gold-lt); padding: 6px 16px; border-radius: 20px;
+  transition: all 0.2s;
+}
+.nav-back:hover { background: var(--gold-lt); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh;
+  padding-top: 68px;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 30%, rgba(192,57,43,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(184,145,74,0.08) 0%, transparent 60%),
+    var(--warm);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+
+/* 大字背景裝飾 */
+.hero-deco {
+  position: absolute;
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 900;
+  color: rgba(184,145,74,0.06);
+  line-height: 1;
+  user-select: none;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  letter-spacing: -0.05em;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 30px;
+  padding: 6px 18px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero-title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 1.2rem;
+}
+.hero-title em { font-style: normal; color: var(--red); }
+.hero-title .dot { color: var(--gold); }
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--stone);
+  max-width: 540px;
+  margin-bottom: 3rem;
+  line-height: 1.9;
+}
+
+.hero-stats {
+  display: flex; gap: 3rem; flex-wrap: wrap;
+  border-top: 1px solid var(--gold-lt);
+  padding-top: 2.5rem;
+}
+.stat { }
+.stat-num {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+}
+.stat-unit { font-size: 0.9rem; color: var(--stone); margin-left: 4px; }
+.stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 6px; letter-spacing: 0.05em; }
+
+/* ── 通用 section ── */
+.section { padding: 5rem 2rem; }
+.section-inner { max-width: 900px; margin: 0 auto; }
+
+.label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+.divider {
+  width: 48px; height: 3px;
+  background: var(--red);
+  margin: 1.5rem 0 2.5rem;
+  border-radius: 2px;
+}
+
+/* ── 我們的故事 ── */
+.story { background: var(--paper); }
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+@media(max-width:680px){ .story-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.story-text p { color: var(--stone); line-height: 2; margin-bottom: 1.2rem; font-size: 0.95rem; }
+.story-text strong { color: var(--ink); }
+
+.story-quote {
+  background: var(--white);
+  border-left: 4px solid var(--red);
+  padding: 2rem 2rem 2rem 2.5rem;
+  border-radius: 0 16px 16px 0;
+  position: relative;
+}
+.story-quote::before {
+  content: '"';
+  font-family: 'Noto Serif TC', serif;
+  font-size: 5rem;
+  color: var(--red-soft);
+  position: absolute;
+  top: -10px; left: 16px;
+  line-height: 1;
+}
+.story-quote p { font-family: 'Noto Serif TC', serif; font-size: 1.1rem; color: var(--ink); line-height: 1.8; position: relative; z-index: 1; }
+.story-quote cite { display: block; margin-top: 1rem; font-size: 0.75rem; color: var(--muted); font-style: normal; }
+
+/* ── 國小生方案 ── */
+.kids-section { background: var(--ink); color: var(--white); }
+.kids-section .label { color: rgba(255,255,255,0.4); }
+.kids-section .section-title { color: var(--white); }
+.kids-section .divider { background: var(--gold); }
+
+.kids-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+@media(max-width:580px){ .kids-card { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+.kids-price-box {
+  text-align: center;
+  background: var(--red);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  min-width: 130px;
+}
+.kids-price-label { font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+.kids-price-num { font-family: 'Noto Serif TC', serif; font-size: 3rem; font-weight: 700; color: var(--white); line-height: 1; }
+.kids-price-unit { font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-top: 4px; }
+
+.kids-detail h4 { font-size: 1.3rem; margin-bottom: 1rem; color: var(--gold); }
+.kids-detail p { color: rgba(255,255,255,0.7); font-size: 0.9rem; line-height: 1.9; margin-bottom: 0.8rem; }
+
+.kids-flow {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+}
+.flow-step {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 6px 14px;
+  color: rgba(255,255,255,0.85);
+}
+.flow-arrow { color: var(--gold); font-size: 1.1rem; }
+
+/* ── 捐款資訊 ── */
+.donate-section { background: var(--warm); }
+
+.donate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+@media(max-width:620px){ .donate-grid { grid-template-columns: 1fr; } }
+
+.donate-card {
+  border: 1px solid var(--gold-lt);
+  border-radius: 20px;
+  padding: 2rem;
+  background: var(--white);
+  transition: box-shadow 0.25s;
+}
+.donate-card:hover { box-shadow: 0 8px 32px rgba(184,145,74,0.12); }
+.donate-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.donate-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--ink); }
+.donate-card p, .donate-card code {
+  font-size: 0.88rem; color: var(--stone); line-height: 1.8;
+}
+.donate-card code {
+  display: block;
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin: 8px 0;
+  letter-spacing: 0.05em;
+}
+
+.btn-donate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Noto Serif TC', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(192,57,43,0.3);
+}
+.btn-donate:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(192,57,43,0.4); }
+.btn-donate-note { font-size: 0.72rem; color: var(--muted); margin-top: 0.8rem; }
+
+/* ── 愛心足跡 ── */
+.footprint-section { background: var(--paper); }
+
+.footprint-note {
+  background: var(--white);
+  border: 1px solid var(--gold-lt);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  font-size: 0.85rem;
+  color: var(--stone);
+  margin-bottom: 2.5rem;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.footprint-note-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+.receipt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+.receipt-card {
+  background: var(--white);
+  border: 1px solid var(--gold-lt);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.receipt-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+.receipt-img {
+  width: 100%; aspect-ratio: 3/4;
+  background: linear-gradient(135deg, var(--paper) 0%, var(--gold-lt) 100%);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 8px;
+  color: var(--muted); font-size: 0.78rem; text-align: center; padding: 1rem;
+}
+.receipt-img-icon { font-size: 2.2rem; }
+.receipt-meta { padding: 1rem; }
+.receipt-month { font-size: 0.78rem; font-weight: 700; color: var(--red); margin-bottom: 2px; }
+.receipt-amount { font-size: 0.85rem; color: var(--stone); }
+
+/* 空白提示 */
+.receipt-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  border: 2px dashed var(--gold-lt);
+  border-radius: 16px;
+}
+.receipt-empty-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+
+/* ── 大愛報導 ── */
+.media-section { background: var(--warm); }
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  border: 8px solid var(--white);
+  margin-top: 2rem;
+}
+.video-wrap iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.media-credit {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 1rem;
+  letter-spacing: 0.1em;
+}
+
+/* ── 關於我們 ── */
+.about-section { background: var(--ink); color: var(--white); }
+.about-section .label { color: rgba(255,255,255,0.4); }
+.about-section .section-title { color: var(--white); }
+.about-section .divider { background: var(--gold); }
+.about-section p { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 2; margin-bottom: 1rem; }
+.about-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--gold);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184,145,74,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+  margin-top: 0.5rem;
+}
+.about-link:hover { border-color: var(--gold); }
+
+/* ── Footer ── */
+footer {
+  background: #110E0B;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 2.5rem 2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  line-height: 2.2;
+}
+footer strong { color: rgba(255,255,255,0.5); }
+
+/* ── scroll reveal ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- 導覽 -->
+<nav>
+  <div class="nav-brand">
+    <span class="nav-heart">❤</span>
+    <div>
+      <span class="nav-brand-text">筋動人生・愛心匯流</span>
+      <span class="nav-brand-sub">愛心資訊媒合平台</span>
+    </div>
+  </div>
+  <a href="index.html" class="nav-back">← 回官網</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-deco">愛</div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span></span>
+      惠明盲校・公益媒合平台
+    </div>
+    <h1 class="hero-title">
+      每一雙手<em>，</em><br>
+      都能成為<em>光</em><span class="dot">。</span>
+    </h1>
+    <p class="hero-sub">
+      筋動人生與台中惠明盲校攜手超過十年。<br>
+      這裡是一個純粹的愛心資訊媒合平台——<br>
+      讓您的善意，直接抵達最需要的孩子手中。
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div><span class="stat-num">10</span><span class="stat-unit">年</span></div>
+        <div class="stat-label">持續義診</div>
+      </div>
+      <div class="stat">
+        <div><span class="stat-num">52</span><span class="stat-unit">次／年</span></div>
+        <div class="stat-label">每週固定到校</div>
+      </div>
+      <div class="stat">
+        <div><span class="stat-num">100</span><span class="stat-unit">元</span></div>
+        <div class="stat-label">國小生調理全數捐出</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 我們的故事 -->
+<section class="section story">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">Our Story</p>
+      <h2 class="section-title">十年，一個不曾間斷的約定</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p>
+          超過十年前，筋動人生創辦人<strong>顧凱華老師</strong>帶著師傅們走進台中惠明盲校。那一天開始，每個星期，不論颳風下雨，筋動人生的師傅都準時出現在惠明校園裡。
+        </p>
+        <p>
+          惠明盲校是<strong>台灣 28 所特教學校中唯一一所私立特殊教育學校</strong>，秉持愛的宗旨，以免費的方式服務視障及視多重障礙學生。這裡的孩子，用手讀世界，用心感受一切。
+        </p>
+        <p>
+          我們的師傅相信：身體的舒適，是每一個孩子都應該擁有的。這份信念，讓我們走了十年，也會繼續走下去。
+        </p>
+        <p style="font-size:0.8rem; color:var(--muted); margin-top:1.5rem;">
+          ＊為保護孩童個人隱私，本平台不刊登學生的照片或個人資訊。如需了解學校現況，請洽惠明盲校官方管道。
+        </p>
+      </div>
+      <div class="story-quote reveal" style="transition-delay:0.2s;">
+        <p>身體的空間感，是每一個人都值得擁有的。視障的孩子，同樣需要被好好對待的身體。</p>
+        <cite>— 顧凱華老師，筋動人生創辦人</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 國小生方案 -->
+<section class="section kids-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">Kids Program</p>
+      <h2 class="section-title">國小生 $100 元，全數以孩子名義捐給惠明</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="kids-card reveal" style="transition-delay:0.15s;">
+      <div class="kids-price-box">
+        <div class="kids-price-label">國小生調理</div>
+        <div class="kids-price-num">100</div>
+        <div class="kids-price-unit">元 / 次</div>
+      </div>
+      <div class="kids-detail">
+        <h4>每一元，都去到對的地方</h4>
+        <p>
+          帶國小生來筋動人生調理，只需酌收 <strong style="color:var(--gold);">100 元</strong>。
+          這 100 元不進筋動人生的帳戶——我們會定期將這份善款，
+          <strong style="color:var(--gold);">以孩子的名義</strong>，透過官方管道直接捐給惠明盲校。
+        </p>
+        <p>
+          每一筆捐款，我們都會索取正式收據並拍照上傳至下方「愛心足跡」區塊，接受所有人公開檢視。
+        </p>
+        <div class="kids-flow">
+          <span class="flow-step">家長帶孩子來調理</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">酌收 $100</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">定期匯款至惠明</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">收據公開上傳</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">完全透明</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 捐款資訊 -->
+<section class="section donate-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">Donate</p>
+      <h2 class="section-title">您也可以直接捐款給惠明盲校</h2>
+      <div class="divider"></div>
+      <p style="color:var(--stone); font-size:0.9rem; margin-bottom: 0.5rem;">
+        以下所有捐款管道均為<strong>惠明盲校官方帳戶</strong>。善款 100% 直接進入惠明體系，筋動人生不經手任何款項。
+      </p>
+    </div>
+
+    <div class="donate-grid reveal" style="transition-delay:0.1s;">
+
+      <div class="donate-card">
+        <div class="donate-card-icon">🌐</div>
+        <h4>線上信用卡 / 行動支付</h4>
+        <p>惠明盲校官方線上捐獻系統，支援信用卡、行動支付，可取得電子收據。</p>
+        <a href="https://hsmh.my-donate.com.tw/" target="_blank" rel="noopener" class="btn-donate" style="margin-top:1.2rem; font-size:0.9rem; padding:10px 22px;">
+          前往惠明線上捐款 →
+        </a>
+      </div>
+
+      <div class="donate-card">
+        <div class="donate-card-icon">🏦</div>
+        <h4>郵政劃撥</h4>
+        <p>適合習慣到郵局辦理的朋友。</p>
+        <code>劃撥帳號：20517166
+戶名：私立惠明盲校</code>
+      </div>
+
+      <div class="donate-card">
+        <div class="donate-card-icon">💳</div>
+        <h4>銀行轉帳</h4>
+        <p>台中二信大雅分社</p>
+        <code>銀行代號：146
+帳號：0148-0031-012231
+戶名：財團法人臺中市私立惠明盲校</code>
+        <p style="font-size:0.78rem; margin-top:8px;">轉帳後請來電告知：<br>04-25661024 分機 177／187（會計室）</p>
+      </div>
+
+      <div class="donate-card">
+        <div class="donate-card-icon">🧾</div>
+        <h4>愛心發票捐贈</h4>
+        <p>超商結帳前，報出惠明盲校愛心碼：</p>
+        <code style="font-size:1.3rem; letter-spacing:0.2em; text-align:center;">六個 1</code>
+        <p style="font-size:0.78rem; margin-top:8px;">小小善舉，積沙成塔。</p>
+      </div>
+
+    </div>
+
+    <p class="btn-donate-note reveal" style="margin-top:2rem; font-size:0.75rem; color:var(--muted);">
+      ＊本頁所有捐款連結及帳號均為惠明盲校官方資訊。如有疑問請直接洽詢惠明盲校：04-25661024 分機 178、188、186
+    </p>
+  </div>
+</section>
+
+<!-- 愛心足跡 -->
+<section class="section footprint-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">Transparency</p>
+      <h2 class="section-title">愛心足跡</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="footprint-note reveal">
+      <span class="footprint-note-icon">📋</span>
+      <p>
+        每一次我們以國小生名義將善款匯給惠明盲校後，都會將<strong>官方捐款收據</strong>拍照公開於此。這個區塊是我們對所有家長與社會大眾的承諾：每一分錢的去向，都清清楚楚。
+      </p>
+    </div>
+
+    <div class="receipt-grid reveal" style="transition-delay:0.1s;">
+      <!-- 目前尚無收據上傳 → 顯示空白提示 -->
+      <div class="receipt-empty">
+        <span class="receipt-empty-icon">🌱</span>
+        <p>愛心足跡正在累積中。<br>首筆捐款收據將於近期上傳。</p>
+      </div>
+
+      <!-- 未來的收據樣板（留作參考，實際上傳時取消註解並換成真實圖片）
+      <div class="receipt-card">
+        <div class="receipt-img">
+          <span class="receipt-img-icon">🧾</span>
+          <span>收據照片</span>
+        </div>
+        <div class="receipt-meta">
+          <div class="receipt-month">2025年 1月</div>
+          <div class="receipt-amount">捐款金額：$XXX</div>
+        </div>
+      </div>
+      -->
+    </div>
+  </div>
+</section>
+
+<!-- 大愛電視台報導 -->
+<section class="section media-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">Media</p>
+      <h2 class="section-title">大愛電視台記錄</h2>
+      <div class="divider"></div>
+      <p style="color:var(--stone); font-size:0.9rem;">
+        十年義診的故事，被大愛電視台的鏡頭記錄了下來。我們沒有刻意宣傳，只是繼續做該做的事。
+      </p>
+    </div>
+    <div class="video-wrap reveal" style="transition-delay:0.15s;">
+      <iframe
+        src="https://www.youtube.com/embed/3YdJFlZUpm0"
+        title="筋動人生 惠明盲校義診 大愛電視台報導"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <p class="media-credit">此報導由大愛電視台獨立採訪製作</p>
+  </div>
+</section>
+
+<!-- 關於筋動人生 -->
+<section class="section about-section">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="label">About</p>
+      <h2 class="section-title">關於筋動人生</h2>
+      <div class="divider"></div>
+    </div>
+    <div style="max-width:580px;" class="reveal" style="transition-delay:0.1s;">
+      <p>筋動人生以「人體骨骼結構工程學」為核心，由顧凱華老師創辦，總院位於台中南屯，並在桃園、新竹設有分館。</p>
+      <p>本平台為筋動人生自發建立的公益資訊媒合網站，與惠明盲校無任何商業合作，捐款亦不經筋動人生帳戶。</p>
+      <a href="index.html" class="about-link">前往筋動人生官網 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p><strong>筋動人生・愛心匯流</strong>｜愛心資訊媒合平台</p>
+  <p>本平台不收取任何捐款，所有善款直接匯入惠明盲校官方帳戶</p>
+  <p style="margin-top:0.5rem;">惠明盲校官網：www.hmsh.tc.edu.tw ｜ 洽詢電話：04-25661024</p>
+  <p style="margin-top:1rem;">© 2026 JINDONG RENSHENG・愛心匯流</p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
