@@ -184,6 +184,14 @@ footer a:hover { color: rgba(255,210,120,1); }
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 @media(max-width:480px){ .section { padding: 4rem 1.5rem; } .hero-inner { padding: 4rem 1.5rem 3rem; } .hero-stats { gap: 2rem; } nav { padding: 0 1.5rem; } }
+@media(max-width:700px){
+  .donate-slider-btn { display: none; }
+  .donate-slider-wrap { padding: 0; }
+}
+@media(max-width:600px){
+  .kids-main { grid-template-columns: 1fr !important; gap: 2rem; }
+  .price-block { min-width: unset; }
+}
 </style>
 </head>
 <body>
@@ -210,7 +218,7 @@ footer a:hover { color: rgba(255,210,120,1); }
     </p>
     <div class="hero-stats reveal" style="transition-delay:0.3s;">
       <div>
-        <div class="stat-label" style="font-size:2rem; font-family:'Noto Serif TC',serif; font-weight:700; color:var(--ink); letter-spacing:0.02em; margin-top:0;">國小生調理・酌收 100・全數捐出</div>
+        <div class="stat-label" style="font-size:clamp(0.9rem,4vw,2rem); font-family:'Noto Serif TC',serif; font-weight:700; color:var(--ink); letter-spacing:0.02em; margin-top:0; white-space:nowrap;">國小生調理・酌收 100・全數捐出</div>
         <div class="stat-bar" style="background:var(--gold);"></div>
       </div>
     </div>
@@ -225,7 +233,7 @@ footer a:hover { color: rgba(255,210,120,1); }
       <h2 class="section-title">一個不間斷的約定</h2>
       <div class="section-divider"></div>
     </div>
-    <div class="story-grid" style="align-items:start; display:grid; grid-template-columns:3fr 2fr; gap:5rem;">
+    <div class="story-grid" style="align-items:start;">
       <div class="story-text reveal" style="align-self:start;">
         <p>筋動人生創辦人顧凱華老師帶著師傅們走進台中惠明盲校。從那一天開始，每一週筋動人生的師傅們都準時出現在惠明校園裡。</p>
         <p><strong>惠明盲校是台灣 28 所特教學校中唯一一所私立特殊教育學校</strong>，秉持愛的宗旨，以免費的方式服務視障及視多重障礙學生。這裡的孩子，用手讀世界，用心感受一切。</p>
@@ -281,7 +289,7 @@ footer a:hover { color: rgba(255,210,120,1); }
           <li>本團隊僅作為善意傳遞之橋樑（將內部國小生調理費用轉化為捐贈），不經手任何第三方代收代付之對外募款行為。</li>
         </ol>
         <div style="margin-top:1.5rem; text-align:center;">
-          <a href="https://www.hmsh.tc.edu.tw/" target="_blank" rel="noopener" class="btn-official">前往惠明盲校官方網站 查閱捐款徵信錄 →</a>
+          <a href="https://www.hmsh.tc.edu.tw/" target="_blank" rel="noopener" class="btn-official">前往惠明盲校官方網站<br>查閱捐款徵信錄 →</a>
         </div>
       </div>
 
@@ -317,7 +325,7 @@ footer a:hover { color: rgba(255,210,120,1); }
         <div class="donate-card">
           <div class="donate-card-top"><div class="donate-icon">🧾</div><h4>愛心發票捐贈</h4></div>
           <p>超商結帳前，報出惠明盲校愛心碼：</p>
-          <code class="donate-code-big">111111（六個 1）</code>
+          <code class="donate-code-big">111111<br>（六個 1）</code>
           <p class="donate-card-note" style="text-align:center; margin-top:12px;">小小善舉，積沙成塔</p>
         </div>
       </div>
@@ -326,7 +334,7 @@ footer a:hover { color: rgba(255,210,120,1); }
 
     <!-- 頁尾資訊 -->
     <div style="margin-top:4rem; padding-top:2.5rem; border-top:1px solid var(--gold-lt); text-align:center; font-size:0.78rem; color:var(--muted); line-height:2.5;">
-      <strong style="color:var(--ink);">筋動人生・愛心匯流｜愛心資訊媒合平台
+      <strong style="color:var(--ink);">筋動人生・愛心匯流｜愛心資訊媒合平台</strong>
       <div style="width:40px; height:1px; background:var(--gold-lt); margin:1rem auto;"></div>
       <p>本平台不收取任何捐款，所有善款直接匯入惠明盲校官方帳戶</p>
       <p>惠明盲校官網：<a href="https://www.hmsh.tc.edu.tw" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(212,160,67,0.3);">www.hmsh.tc.edu.tw</a> ｜ 洽詢電話：04-25661024 分機 178、188、186</p>
