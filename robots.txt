@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jindonglife.github.io/sitemap.xml
