@@ -81,6 +81,12 @@
             font-weight: 500;
             text-align: center;
         }
+
+        /* 手機版：隱藏輪播箭頭，可手指滑動 */
+        @media (max-width: 768px) {
+            .slider-arrow { display: none !important; }
+            .slider-wrap-mobile { padding-left: 1rem !important; padding-right: 1rem !important; }
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -195,18 +201,18 @@
             </div>
             <div class="grid lg:grid-cols-2 gap-20 items-center">
                 <div class="flex justify-center gap-3 md:gap-10 reveal overflow-x-auto pb-2">
-                    <div class="relative">
-                        <img src="正骨本1比1.jpg" alt="正骨本清病源" class="w-28 md:w-80 rounded-xl book-card transform -rotate-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="正骨本1比1.jpg" alt="正骨本清病源" class="w-32 sm:w-40 md:w-80 rounded-xl book-card transform -rotate-6">
                         <p class="text-xs text-stone-400 mt-2 text-center">《正骨本・清病源》</p>
                     </div>
-                    <div class="relative pt-16">
-                        <img src="筋動力1比1.jpg" alt="3分鐘筋動力" class="w-28 md:w-80 rounded-xl book-card transform rotate-6">
+                    <div class="relative pt-16 flex-shrink-0">
+                        <img src="筋動力1比1.jpg" alt="3分鐘筋動力" class="w-32 sm:w-40 md:w-80 rounded-xl book-card transform rotate-6">
                         <p class="text-xs text-stone-400 mt-2 text-center">《3分鐘筋動力》</p>
                     </div>
 
                     <!-- 聘書 -->
-                    <div class="relative pt-4">
-                        <img src="顧問聘書.jpg" alt="臺灣輔助醫學醫學會顧問聘書" class="w-28 md:w-80 rounded-xl book-card">
+                    <div class="relative pt-4 flex-shrink-0">
+                        <img src="顧問聘書.jpg" alt="臺灣輔助醫學醫學會顧問聘書" class="w-32 sm:w-40 md:w-80 rounded-xl book-card">
                         <p class="text-xs text-stone-400 font-bold mt-3 text-center">臺灣輔助醫學醫學會</p>
                         <p class="text-xs text-stone-400 text-center mt-0.5">韜略產業聯盟策略長聘書</p>
                     </div>
@@ -266,8 +272,8 @@
                     </div>
                 </div>
                 <!-- 左右箭頭，絕對定位在 px-6 padding 區間 -->
-                <button onclick="slideMove(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8592;</button>
-                <button onclick="slideMove(1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8594;</button>
+                <button onclick="slideMove(-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8592;</button>
+                <button onclick="slideMove(1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8594;</button>
             </div>
             <p class="text-center text-xs text-stone-400 mt-6">← 左右切換查看更多節目紀錄 →</p>
         </div>
@@ -285,8 +291,8 @@
                         <div class="slider-item-2 flex-shrink-0 rounded-2xl overflow-hidden border border-amber-100" style="width:calc(100vw - 100px); max-width:288px; height:320px;"><img src="進修4.png" alt="進修實錄4" class="w-full h-full object-cover object-center transition-transform duration-500 ease-out hover:scale-110"></div>
                     </div>
                 </div>
-                <button onclick="slideMove2(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8592;</button>
-                <button onclick="slideMove2(1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8594;</button>
+                <button onclick="slideMove2(-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8592;</button>
+                <button onclick="slideMove2(1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 hover:bg-stone-50 transition-all z-10">&#8594;</button>
             </div>
             <p class="text-center text-xs text-stone-400 mt-6">← 左右切換查看更多進修實錄 →</p>
         </div>
@@ -451,10 +457,10 @@
                                 <img src="台中總院3F.jpg" alt="台中總院3F" class="flex-shrink-0 object-cover rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
                             </div>
                         </div>
-                        <button onclick="envSlide2(1,-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
-                        <button onclick="envSlide2(1,1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
+                        <button onclick="envSlide2(1,-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
+                        <button onclick="envSlide2(1,1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
                     </div>
-                    <p class="text-xs text-stone-400 text-center mt-3">← 左右切換 →</p>
+                    <p class="text-xs text-stone-400 text-center mt-3">← 滑動切換 →</p>
                 </div>
 
                 <!-- 桃園館 -->
@@ -463,15 +469,15 @@
                     <div class="relative px-10 max-w-lg mx-auto">
                         <div class="overflow-hidden rounded-2xl">
                             <div id="env-track-2" class="flex gap-4" style="width:max-content; will-change:transform; transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);">
-                                <img src="筋動人生桃園1.jpg" alt="桃園館1" class="flex-shrink-0 object-cover rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
-                                <img src="筋動人生桃園2.jpg" alt="桃園館2" class="flex-shrink-0 object-cover rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
-                                <img src="筋動人生桃園3.jpg" alt="桃園館3" class="flex-shrink-0 object-cover rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
+                                <img src="筋動人生桃園1.jpg" alt="桃園館1" class="flex-shrink-0 object-contain bg-stone-50 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:300px;">
+                                <img src="筋動人生桃園2.jpg" alt="桃園館2" class="flex-shrink-0 object-contain bg-stone-50 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:300px;">
+                                <img src="筋動人生桃園3.jpg" alt="桃園館3" class="flex-shrink-0 object-contain bg-stone-50 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:300px;">
                             </div>
                         </div>
-                        <button onclick="envSlide2(2,-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
-                        <button onclick="envSlide2(2,1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
+                        <button onclick="envSlide2(2,-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
+                        <button onclick="envSlide2(2,1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
                     </div>
-                    <p class="text-xs text-stone-400 text-center mt-3">← 左右切換 →</p>
+                    <p class="text-xs text-stone-400 text-center mt-3">← 滑動切換 →</p>
                 </div>
 
                 <!-- 新竹館 -->
@@ -480,15 +486,15 @@
                     <div class="relative px-10 max-w-lg mx-auto">
                         <div class="overflow-hidden rounded-2xl">
                             <div id="env-track-3" class="flex gap-4" style="width:max-content; will-change:transform; transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);">
-                                <img src="筋動人生新竹1.jpg" alt="新竹館1" class="flex-shrink-0 object-contain bg-stone-100 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
-                                <img src="筋動人生新竹2.jpg" alt="新竹館2" class="flex-shrink-0 object-contain bg-stone-100 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
-                                <img src="筋動人生新竹3.jpg" alt="新竹館3" class="flex-shrink-0 object-contain bg-stone-100 rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
+                                <img src="筋動人生新竹1.jpg" alt="新竹館1" class="flex-shrink-0 object-cover bg-stone-100 rounded-2xl" style="width:calc(100vw - 120px); max-width:280px; aspect-ratio:9/16; height:auto; max-height:500px;">
+                                <img src="筋動人生新竹2.jpg" alt="新竹館2" class="flex-shrink-0 object-cover bg-stone-100 rounded-2xl" style="width:calc(100vw - 120px); max-width:280px; aspect-ratio:9/16; height:auto; max-height:500px;">
+                                <img src="筋動人生新竹3.jpg" alt="新竹館3" class="flex-shrink-0 object-cover bg-stone-100 rounded-2xl" style="width:calc(100vw - 120px); max-width:280px; aspect-ratio:9/16; height:auto; max-height:500px;">
                             </div>
                         </div>
-                        <button onclick="envSlide2(3,-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
-                        <button onclick="envSlide2(3,1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
+                        <button onclick="envSlide2(3,-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
+                        <button onclick="envSlide2(3,1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
                     </div>
-                    <p class="text-xs text-stone-400 text-center mt-3">← 左右切換 →</p>
+                    <p class="text-xs text-stone-400 text-center mt-3">← 滑動切換 →</p>
                 </div>
 
                 <!-- 東勢慈雲慈航寺 -->
@@ -503,10 +509,10 @@
                                 <img src="東勢慈雲慈航寺1.jpg" alt="慈雲慈航寺" class="flex-shrink-0 object-cover rounded-2xl" style="width:calc(100vw - 100px); max-width:400px; height:260px;">
                             </div>
                         </div>
-                        <button onclick="envSlide2(4,-1)" class="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
-                        <button onclick="envSlide2(4,1)" class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
+                        <button onclick="envSlide2(4,-1)" class="slider-arrow absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8592;</button>
+                        <button onclick="envSlide2(4,1)" class="slider-arrow absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-stone-200 rounded-full shadow flex items-center justify-center text-stone-500 z-10">&#8594;</button>
                     </div>
-                    <p class="text-xs text-stone-400 text-center mt-3">← 左右切換 →</p>
+                    <p class="text-xs text-stone-400 text-center mt-3">← 滑動切換 →</p>
                 </div>
 
             </div>
@@ -561,7 +567,7 @@
                 </a>
             </div>
             <div class="mt-20 text-stone-300 text-[10px] leading-relaxed max-w-2xl mx-auto">
-                本服務為傳統整復推拿、物理力學調理與日常疲勞消除<br>旨在釋放肌肉張力與壓力非屬醫療行為<br>若您有嚴重生理疾病請先尋求專科醫師診斷
+                本服務為傳統整復推拿、物理力學調理與日常疲勞消除<br>旨在釋放肌肉張力與壓力，非屬醫療行為<br>若您有嚴重生理疾病，請先尋求專科醫師診斷
             </div>
         </div>
     </section>
@@ -581,40 +587,106 @@
     </footer>
 
     <script>
-        // 環境照 slider v2 — 動態讀取圖片實際寬度
+        // 偵測是否為觸控裝置（手機/平板）
+        const isTouch = window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window;
+
+        // 環境照 slider — 桌機用 transform，手機用原生 scroll
         const envPos2 = {1:0, 2:0, 3:0, 4:0};
         function envSlide2(n, dir) {
             const track = document.getElementById('env-track-' + n);
+            const wrap = track.parentElement;
             const img = track.children[0];
-            const itemW = img.offsetWidth + 16; // width + gap
-            const count = track.children.length;
-            const maxPos = -(count - 1) * itemW;
-            envPos2[n] = Math.max(maxPos, Math.min(0, envPos2[n] - dir * itemW));
-            track.style.transform = 'translateX(' + envPos2[n] + 'px)';
+            const itemW = img.offsetWidth + 16;
+            if (isTouch) {
+                wrap.scrollBy({ left: dir * itemW, behavior: 'smooth' });
+            } else {
+                const count = track.children.length;
+                const maxPos = -(count - 1) * itemW;
+                envPos2[n] = Math.max(maxPos, Math.min(0, envPos2[n] - dir * itemW));
+                track.style.transform = 'translateX(' + envPos2[n] + 'px)';
+            }
         }
+
         let sliderPos = 0;
         function slideMove(dir) {
             const track = document.getElementById('slider-track');
-            const clip  = track.parentElement; // overflow-hidden div
+            const clip = track.parentElement;
             const items = track.querySelectorAll('.slider-item');
-            const itemW = items[0].offsetWidth + 24; // 寬度 + gap
-            const visibleCount = Math.floor(clip.offsetWidth / itemW) || 1;
-            const maxPos = -(items.length - visibleCount) * itemW;
-            sliderPos = Math.max(maxPos, Math.min(0, sliderPos - dir * itemW));
-            track.style.transform = `translateX(${sliderPos}px)`;
-            track.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+            const itemW = items[0].offsetWidth + 24;
+            if (isTouch) {
+                clip.scrollBy({ left: dir * itemW, behavior: 'smooth' });
+            } else {
+                const visibleCount = Math.floor(clip.offsetWidth / itemW) || 1;
+                const maxPos = -(items.length - visibleCount) * itemW;
+                sliderPos = Math.max(maxPos, Math.min(0, sliderPos - dir * itemW));
+                track.style.transform = `translateX(${sliderPos}px)`;
+                track.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+            }
         }
+
         let sliderPos2 = 0;
         function slideMove2(dir) {
             const track = document.getElementById('slider-track-2');
-            const clip  = track.parentElement;
+            const clip = track.parentElement;
             const items = track.querySelectorAll('.slider-item-2');
             const itemW = items[0].offsetWidth + 24;
-            const visibleCount = Math.floor(clip.offsetWidth / itemW) || 1;
-            const maxPos = -(items.length - visibleCount) * itemW;
-            sliderPos2 = Math.max(maxPos, Math.min(0, sliderPos2 - dir * itemW));
-            track.style.transform = `translateX(${sliderPos2}px)`;
-            track.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+            if (isTouch) {
+                clip.scrollBy({ left: dir * itemW, behavior: 'smooth' });
+            } else {
+                const visibleCount = Math.floor(clip.offsetWidth / itemW) || 1;
+                const maxPos = -(items.length - visibleCount) * itemW;
+                sliderPos2 = Math.max(maxPos, Math.min(0, sliderPos2 - dir * itemW));
+                track.style.transform = `translateX(${sliderPos2}px)`;
+                track.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1)';
+            }
+        }
+
+        // 手機版：把所有輪播的外層容器設成可橫向滾動，並開啟貼齊
+        if (isTouch) {
+            const setupTouchScroll = (selector, snapSelector) => {
+                document.querySelectorAll(selector).forEach(track => {
+                    const wrap = track.parentElement;
+                    wrap.style.overflowX = 'auto';
+                    wrap.style.scrollSnapType = 'x mandatory';
+                    wrap.style.webkitOverflowScrolling = 'touch';
+                    wrap.style.scrollbarWidth = 'none';
+                    wrap.style.msOverflowStyle = 'none';
+                    // 清掉桌機版的 transform
+                    track.style.transform = '';
+                    track.style.transition = '';
+                    // 給每個子元素加 scroll-snap-align
+                    track.querySelectorAll(snapSelector).forEach(item => {
+                        item.style.scrollSnapAlign = 'center';
+                    });
+                });
+            };
+            setupTouchScroll('#slider-track', '.slider-item');
+            setupTouchScroll('#slider-track-2', '.slider-item-2');
+            // env-track-1 到 env-track-4
+            for (let i = 1; i <= 4; i++) {
+                const track = document.getElementById('env-track-' + i);
+                if (!track) continue;
+                const wrap = track.parentElement;
+                wrap.style.overflowX = 'auto';
+                wrap.style.scrollSnapType = 'x mandatory';
+                wrap.style.webkitOverflowScrolling = 'touch';
+                wrap.style.scrollbarWidth = 'none';
+                wrap.style.msOverflowStyle = 'none';
+                track.style.transform = '';
+                track.style.transition = '';
+                Array.from(track.children).forEach(item => {
+                    item.style.scrollSnapAlign = 'center';
+                });
+            }
+            // 隱藏 scrollbar (WebKit)
+            const style = document.createElement('style');
+            style.textContent = `
+                #slider-track::-webkit-scrollbar,
+                #slider-track-2::-webkit-scrollbar,
+                [id^="env-track-"]::-webkit-scrollbar,
+                .overflow-hidden::-webkit-scrollbar { display: none; }
+            `;
+            document.head.appendChild(style);
         }
 
         const reveals = document.querySelectorAll('.reveal');
