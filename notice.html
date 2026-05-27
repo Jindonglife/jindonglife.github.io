@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>注意事項 — 筋動人生．脊椎保健</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: 'Noto Serif TC', 'Georgia', serif;
+    background: #faf6f0;
+    color: #2a1810;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .watermark {
+    text-align: center;
+    padding: clamp(16px, 4vw, 28px) 0 8px;
+    font-size: clamp(11px, 2.5vw, 13px);
+    letter-spacing: 3px;
+    color: #b89c7a;
+  }
+
+  /* ── 分頁標籤列 ── */
+  .tab-bar {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #d4b896;
+    background: #faf6f0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 0 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    padding: clamp(10px, 2.5vw, 14px) clamp(16px, 4vw, 32px);
+    font-size: clamp(13px, 3vw, 14px);
+    letter-spacing: 0.5px;
+    color: #b89c7a;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .tab-btn.active {
+    color: #7a4f2d;
+    border-bottom: 2px solid #c4863a;
+    font-weight: 600;
+  }
+
+  .tab-btn:hover:not(.active) { color: #7a4f2d; }
+
+  /* ── 分頁內容 ── */
+  .page {
+    display: none;
+    max-width: 680px;
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 24px) clamp(32px, 8vw, 48px);
+  }
+
+  .page.active { display: block; }
+
+  /* ── 頁首 ── */
+  .page-header {
+    text-align: center;
+    margin-bottom: clamp(24px, 5vw, 36px);
+    padding-bottom: clamp(20px, 4vw, 28px);
+    border-bottom: 1px solid #e8d8c0;
+  }
+
+  .page-label {
+    font-size: clamp(10px, 2vw, 11px);
+    letter-spacing: 4px;
+    color: #b89c7a;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-size: clamp(22px, 5.5vw, 26px);
+    font-weight: 700;
+    color: #2a1810;
+    margin-bottom: 12px;
+  }
+
+  .page-title span { color: #c4863a; }
+
+  .page-subtitle {
+    font-size: clamp(12px, 3vw, 13px);
+    color: #8a6a50;
+    line-height: 1.8;
+  }
+
+  /* ── 卡片 ── */
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e8d8c0;
+    padding: clamp(16px, 4vw, 24px);
+    margin-bottom: 16px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .card-icon-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .icon-box {
+    width: clamp(34px, 8vw, 40px);
+    height: clamp(34px, 8vw, 40px);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(16px, 4vw, 20px);
+    flex-shrink: 0;
+  }
+
+  .icon-box.blue   { background: #e8f4ff; }
+  .icon-box.orange { background: #fff3e8; }
+  .icon-box.green  { background: #e8f5ee; }
+  .icon-box.purple { background: #f0eaff; }
+
+  .card-num {
+    font-size: 12px;
+    color: #b89c7a;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 600;
+    color: #2a1810;
+    word-break: break-word;
+  }
+
+  /* ── 強調框 ── */
+  .highlight-box {
+    border-radius: 8px;
+    padding: clamp(10px, 3vw, 12px) clamp(12px, 3.5vw, 16px);
+    margin-bottom: 14px;
+  }
+
+  .highlight-box.blue   { background: #e8f4ff; }
+  .highlight-box.orange { background: #fff3e8; }
+
+  .highlight-main {
+    font-size: clamp(13px, 3.2vw, 14px);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .highlight-main.blue   { color: #1a6fa8; }
+  .highlight-main.orange { color: #c4631a; }
+
+  .highlight-sub {
+    font-size: clamp(11px, 2.8vw, 12px);
+    opacity: 0.8;
+  }
+
+  .highlight-sub.blue   { color: #1a6fa8; }
+  .highlight-sub.orange { color: #c4631a; }
+
+  /* ── 卡片內文 ── */
+  .card-body {
+    font-size: clamp(13px, 3.2vw, 14px);
+    color: #5a3a28;
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  .card-body + details { margin-top: 14px; }
+
+  /* ── 折疊區塊 ── */
+  details {
+    border-top: 1px solid #e8d8c0;
+    padding-top: 12px;
+  }
+
+  summary {
+    font-size: clamp(12px, 3vw, 13px);
+    color: #8a6a50;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  summary::-webkit-details-marker { display: none; }
+
+  summary::before {
+    content: '▼';
+    font-size: 10px;
+    transition: transform 0.2s;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  details[open] summary::before { transform: rotate(180deg); }
+
+  .refs {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ref-item {
+    border-left: 2px solid #d4b896;
+    padding-left: 12px;
+  }
+
+  .ref-title {
+    font-size: clamp(11px, 2.8vw, 12px);
+    font-weight: 600;
+    color: #2a1810;
+    margin-bottom: 4px;
+    word-break: break-word;
+  }
+
+  .ref-body {
+    font-size: clamp(11px, 2.8vw, 12px);
+    color: #7a5a44;
+    line-height: 1.6;
+  }
+
+  /* ── 頁尾 ── */
+  .footer {
+    padding: clamp(20px, 5vw, 28px) clamp(16px, 4vw, 24px);
+    border-top: 1px solid #e8d8c0;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: clamp(11px, 2.5vw, 12px);
+    color: #b89c7a;
+    letter-spacing: 1px;
+  }
+
+  /* ── 手機特別優化 ── */
+  @media (max-width: 480px) {
+    .tab-btn { padding: 10px 14px; font-size: 13px; }
+    .card { padding: 16px; border-radius: 10px; }
+    .icon-box { width: 34px; height: 34px; font-size: 16px; }
+    .footer { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="watermark">筋動人生．脊椎保健</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('before', this)">調理前注意事項</button>
+  <button class="tab-btn" onclick="switchTab('after', this)">調理後注意事項</button>
+</div>
+
+<!-- ==================== 調理前注意事項 ==================== -->
+<div id="page-before" class="page active">
+  <div class="page-header">
+    <div class="page-label">SERVICE NOTICE</div>
+    <h1 class="page-title">調理前<span>注意事項</span></h1>
+    <p class="page-subtitle">
+      本服務為傳統整復推拿與物理力學調理<br>
+      旨在釋放肌肉張力與結構壓力，非屬醫療行為<br>
+      請於服務前詳細閱讀以下說明
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box blue">⚕️</div>
+        <div class="card-title">不提供醫療診斷與處方</div>
+      </div>
+      <div class="card-num">01</div>
+    </div>
+    <p class="card-body">本服務不提供疾病診斷、開立處方或任何侵入性治療，如有醫療需求請先就醫。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box orange">🦴</div>
+        <div class="card-title">急性發炎或近期骨折請先就醫</div>
+      </div>
+      <div class="card-num">02</div>
+    </div>
+    <p class="card-body">若您正處於急性發炎（紅、腫、熱、痛）或近期骨折等情況，應先諮詢醫師確認後，再行預約調理服務。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box green">🙌</div>
+        <div class="card-title">本服務為傳統整復推拿</div>
+      </div>
+      <div class="card-num">03</div>
+    </div>
+    <p class="card-body">提供之服務性質為「傳統整復推拿」，旨在舒緩筋骨緊繃、促進循環，非醫療行為，請放心體驗。</p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box purple">💬</div>
+        <div class="card-title">特殊狀況請務必主動告知</div>
+      </div>
+      <div class="card-num">04</div>
+    </div>
+    <p class="card-body">若您患有嚴重骨質疏鬆、心血管疾病、服用抗凝血劑、有植入金屬物（鋼釘鋼板）或目前懷孕中，請務必主動告知師傅，以確保調理過程中的安全。</p>
+  </div>
+</div>
+
+<!-- ==================== 調理後注意事項 ==================== -->
+<div id="page-after" class="page">
+  <div class="page-header">
+    <div class="page-label">POST-TREATMENT NOTICE</div>
+    <h1 class="page-title">調理後<span>注意事項</span></h1>
+    <p class="page-subtitle">
+      調理結束後，請留意以下兩點說明<br>
+      有助於讓身體獲得更好的恢復效果
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box blue">🛁</div>
+        <div class="card-title">泡熱水促進循環</div>
+      </div>
+      <div class="card-num">01</div>
+    </div>
+    <div class="highlight-box blue">
+      <div class="highlight-main blue">半身泡至肚臍，至少 20 分鐘</div>
+      <div class="highlight-sub blue">水溫適中，以舒適為主</div>
+    </div>
+    <p class="card-body">調理後泡熱水可加速血液循環，幫助肌肉放鬆、代謝廢物排出，讓身體進入恢復狀態。</p>
+    <details>
+      <summary>文獻與註解</summary>
+      <div class="refs">
+        <div class="ref-item">
+          <div class="ref-title">Frontiers in Physiology (2023)</div>
+          <div class="ref-body">熱水浸泡後肌肉內溫度上升，促進末梢血管擴張（peripheral vasodilation）與血流增加，加速廢物代謝與養分輸送。</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-title">Steward et al. (2024), Scandinavian Journal of Medicine & Science in Sports</div>
+          <div class="ref-body">運動後熱水浸泡可強化血流動力學反應，提升血管內皮功能。</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-title">ScienceDirect (2025) — 系統性回顧</div>
+          <div class="ref-body">熱療與冷療均可降低 DOMS 患者疼痛，熱敷效果在 24h 及 24h 後皆顯著。</div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon-title">
+        <div class="icon-box orange">💪</div>
+        <div class="card-title">延遲性痠痛屬正常現象</div>
+      </div>
+      <div class="card-num">02</div>
+    </div>
+    <div class="highlight-box orange">
+      <div class="highlight-main orange">痠感約持續 3 - 7 天</div>
+      <div class="highlight-sub orange">會逐漸下降，無需擔心</div>
+    </div>
+    <p class="card-body">調理後身體可能出現延遲性痠痛，這是肌肉正在調整適應的正常反應。痠感會隨時間慢慢減緩，請放心休養。</p>
+    <details>
+      <summary>文獻與註解</summary>
+      <div class="refs">
+        <div class="ref-item">
+          <div class="ref-title">Zhang et al. (2021), Physical Therapy in Sport</div>
+          <div class="ref-body">32 篇 RCT 統合分析：運動後 1 小時內施以熱療可有效降低 DOMS 疼痛程度。</div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-title">Frontiers in Physiology (2017), NIH/PubMed</div>
+          <div class="ref-body">11 篇 RCT、504 名受試者統合分析：按摩於運動後 24h、48h、72h 均顯著降低肌肉痠痛評分。</div>
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<div class="footer">
+  <span>筋動人生．脊椎保健</span>
+  <span>感謝您的配合與信任</span>
+</div>
+
+<script>
+function switchTab(tab, btn) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.getElementById('page-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
