@@ -82,7 +82,7 @@
   a.card {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     background: var(--sand);
     border-radius: 22px;
     padding: 20px;
@@ -122,7 +122,9 @@
   }
 
   .desc {
-    font-size: 13px;
+    /* 強制一行不換行；字級隨螢幕寬縮放，窄螢幕自動縮小以塞得下 */
+    font-size: clamp(9.5px, 3vw, 13px);
+    white-space: nowrap;
     color: var(--ink-soft);
     margin: 4px 0 0;
   }
@@ -133,12 +135,16 @@
     flex-shrink: 0;
   }
 
+  /* 佔位行：手機不顯示（不佔高度）；桌機保留高度但隱藏文字，
+     讓沒有說明文字的 IG／FB 與 YouTube 行數一致，箭頭才會對齊 */
+  .desc-spacer { display: none; }
+
   @media (prefers-reduced-motion: reduce) {
     a.card { transition: none; }
   }
 
   /* 平板／桌機：頁面放寬，三卡改橫排並列 */
-  @media (min-width: 700px) {
+  @media (min-width: 840px) {
     /* 桌機：整組內容垂直置中，卡片高度依內容決定，不被拉伸填滿畫面 */
     .page { max-width: 900px; justify-content: center; }
     .hero { padding: 0 40px 26px; }
@@ -161,7 +167,9 @@
     .body { flex: 0 0 auto; }
     .icon { width: 64px; height: 64px; }
     /* line-height 歸 1：箭頭字元本身的行高留白會讓它看起來離文字更遠 */
-    .arrow { order: 3; line-height: 1; }
+    .arrow { order: 3; line-height: 1; font-size: 26px; }
+    .desc-spacer { display: block; visibility: hidden; }
+    .desc { font-size: clamp(11px, 1.35vw, 13px); }
   }
 </style>
 </head>
@@ -180,6 +188,7 @@
       </div>
       <div class="body">
         <p class="name">Instagram</p>
+        <p class="desc desc-spacer" aria-hidden="true">佔位</p>
       </div>
       <div class="arrow">→</div>
     </a>
@@ -190,6 +199,7 @@
       </div>
       <div class="body">
         <p class="name">Facebook</p>
+        <p class="desc desc-spacer" aria-hidden="true">佔位</p>
       </div>
       <div class="arrow">→</div>
     </a>
